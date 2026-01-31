@@ -193,10 +193,13 @@ tile_set = SubResource("TileSet_45440")
 position = Vector2(541, 751)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=495964767]
+layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=619720857]
+[node name="BackgroundColor" type="ColorRect" parent="CanvasLayer" unique_id=619720857]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.24840015, 0.24840018, 0.24840015, 1)
