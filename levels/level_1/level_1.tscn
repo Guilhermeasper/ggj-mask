@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bg8f7uyqbsayr" path="res://resources/textures/red_texture.tres" id="4_mxc8w"]
 [ext_resource type="Texture2D" uid="uid://p5n8ayb21ht3" path="res://resources/textures/white_texture.tres" id="5_j48du"]
 [ext_resource type="Texture2D" uid="uid://xy16pftn0rb8" path="res://resources/textures/yellow_texture.tres" id="6_8jbay"]
+[ext_resource type="PackedScene" uid="uid://h4gr4ej6ygth" path="res://entities/player/death_area.tscn" id="7_mxc8w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_la5aw"]
 texture = ExtResource("3_e6u7d")
@@ -187,3 +188,6 @@ tile_map_data = PackedByteArray("AAAAACgAAwAAAAAAAAAAACkAAwAAAAEAAAAAACoAAwAAAAI
 tile_set = SubResource("TileSet_45440")
 
 [node name="Enemies" type="Node" parent="." unique_id=1843431129]
+
+[node name="DeathArea" parent="." unique_id=996170154 instance=ExtResource("7_mxc8w")]
+position = Vector2(541, 751)

@@ -19,10 +19,16 @@ var _extra_jumps_remaining: int = 0
 func _ready() -> void:
 	_switch_mask(0)
 
+	var respawn_pos := GameManager.get_respawn_position()
+	print(respawn_pos)
+	if respawn_pos != Vector2.ZERO:
+		global_position = respawn_pos
+
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		_extra_jumps_remaining = _current_mask.extra_jumps
+		GameManager.save_player_position(global_position)
 	else:
 		velocity += get_gravity() * delta
 
@@ -50,6 +56,12 @@ func _physics_process(delta: float) -> void:
 		$Mask.throw(throw_dir)
 
 	move_and_slide()
+
+
+func die() -> void:
+	FadeTransition.transition()
+	await FadeTransition.transition_finished
+	get_tree().reload_current_scene()
 
 
 func _switch_mask(direction: int) -> void:
