@@ -11,7 +11,7 @@ gradient = SubResource("Gradient_symyc")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sfv1e"]
 radius = 24.0
-height = 80.0
+height = 92.0
 
 [node name="Player" type="CharacterBody2D" unique_id=945925870]
 collision_mask = 8
@@ -22,12 +22,13 @@ position = Vector2(2.1457672e-06, 1.9073486e-06)
 scale = Vector2(0.75, 1.5)
 texture = SubResource("GradientTexture2D_abrql")
 
+[node name="Mask" parent="." unique_id=1772725403 instance=ExtResource("2_abrql")]
+position = Vector2(0, -28)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047315707]
-position = Vector2(0, 8)
+position = Vector2(0, 2.0000005)
+rotation = -0.03161038
 shape = SubResource("CapsuleShape2D_sfv1e")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1034638839]
 position = Vector2(104, -144)
-
-[node name="Mask" parent="." unique_id=1772725403 instance=ExtResource("2_abrql")]
-position = Vector2(0, -28)
