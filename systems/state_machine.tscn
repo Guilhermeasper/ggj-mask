@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://csne05j351lbm"]
+
+[ext_resource type="Script" uid="uid://dfjor1mp85lwn" path="res://scripts/state.gd" id="1_pwdr8"]
+
+[node name="StateMachine" type="Node2D" unique_id=1478078099]
+script = ExtResource("1_pwdr8")
+
+[node name="IdleState" type="Node2D" parent="." unique_id=2025302212]
+
+[node name="IdleState2" type="Node2D" parent="." unique_id=519231551]
+
+[node name="IdleState3" type="Node2D" parent="." unique_id=1422033029]
+
+[node name="IdleState4" type="Node2D" parent="." unique_id=1141188074]
