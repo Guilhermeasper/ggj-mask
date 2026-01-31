@@ -10,7 +10,7 @@ class_name MaskData
 @export_group("Player Modifiers")
 @export var move_speed_multiplier: float = 1.0
 @export var jump_force_multiplier: float = 1.0
-@export var can_double_jump: bool = false
+@export var extra_jumps: int = 0
 @export var can_attack: bool = false
 @export var can_parry: bool = false
 
