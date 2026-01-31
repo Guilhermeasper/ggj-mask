@@ -1,18 +1,13 @@
 [gd_scene format=3 uid="uid://drj5l6cuickqd"]
 
 [ext_resource type="Script" uid="uid://to8et43nnqop" path="res://entities/player/player.gd" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://bkpte013dpw0f" path="res://entities/masks/mask.tscn" id="2_abrql"]
 
 [sub_resource type="Gradient" id="Gradient_symyc"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_abrql"]
 gradient = SubResource("Gradient_symyc")
-
-[sub_resource type="Gradient" id="Gradient_abrql"]
-colors = PackedColorArray(0.02745098, 0.2, 0.02745098, 1, 0.02745098, 0.2, 0.02745098, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_sglur"]
-gradient = SubResource("Gradient_abrql")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sfv1e"]
 radius = 24.0
@@ -27,10 +22,7 @@ position = Vector2(2.1457672e-06, 1.9073486e-06)
 scale = Vector2(0.75, 1.5)
 texture = SubResource("GradientTexture2D_abrql")
 
-[node name="Mask" type="Sprite2D" parent="Body" unique_id=1016409969]
-position = Vector2(0, -21.333332)
-scale = Vector2(0.66666675, 0.33333337)
-texture = SubResource("GradientTexture2D_sglur")
+[node name="Mask" parent="Body" unique_id=1772725403 instance=ExtResource("2_abrql")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047315707]
 position = Vector2(0, 8)
