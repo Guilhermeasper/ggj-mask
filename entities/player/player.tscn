@@ -2,20 +2,38 @@
 
 [ext_resource type="Script" uid="uid://to8et43nnqop" path="res://entities/player/player.gd" id="1_symyc"]
 
+[sub_resource type="Gradient" id="Gradient_symyc"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_abrql"]
+gradient = SubResource("Gradient_symyc")
+
+[sub_resource type="Gradient" id="Gradient_abrql"]
+colors = PackedColorArray(0.02745098, 0.2, 0.02745098, 1, 0.02745098, 0.2, 0.02745098, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sglur"]
+gradient = SubResource("Gradient_abrql")
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sfv1e"]
 radius = 24.0
-height = 96.0
+height = 80.0
 
 [node name="Player" type="CharacterBody2D" unique_id=945925870]
 collision_mask = 4
 script = ExtResource("1_symyc")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=882699637]
-position = Vector2(3.4285736, 0)
-scale = Vector2(0.85714287, 1)
-polygon = PackedVector2Array(-32, -48, 24, -48, 24, 48, -32, 48)
+[node name="Body" type="Sprite2D" parent="." unique_id=38593929]
+position = Vector2(2.1457672e-06, 1.9073486e-06)
+scale = Vector2(0.75, 1.5)
+texture = SubResource("GradientTexture2D_abrql")
+
+[node name="Mask" type="Sprite2D" parent="Body" unique_id=1016409969]
+position = Vector2(0, -21.333332)
+scale = Vector2(0.66666675, 0.33333337)
+texture = SubResource("GradientTexture2D_sglur")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047315707]
+position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_sfv1e")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1034638839]

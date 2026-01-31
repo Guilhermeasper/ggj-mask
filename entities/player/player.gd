@@ -43,7 +43,10 @@ func _physics_process(delta: float) -> void:
 func _switch_mask(direction: int) -> void:
 	mask_modifier = calc_new_modifier(mask_modifier, direction)
 	
-	$Polygon2D.color = MASK_COLORS[mask_modifier]
+	var gradient = $Body/Mask.texture.gradient
+	var new_color = MASK_COLORS[mask_modifier]
+	for i in range(gradient.get_point_count()):
+		gradient.set_color(i, new_color)
 	
 	for i in range(4):
 		set_collision_mask_value(i + 3, i == mask_modifier || i == MaskType.WHITE)
