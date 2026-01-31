@@ -180,7 +180,6 @@ text = "Level 1"
 
 [node name="Player" parent="." unique_id=945925870 instance=ExtResource("2_45440")]
 position = Vector2(440, 592)
-collision_layer = 5
 collision_mask = 5
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=414319682]

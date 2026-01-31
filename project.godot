@@ -63,10 +63,11 @@ mask_right={
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="enemy"
-2d_physics/layer_3="white_floor"
-2d_physics/layer_4="blue_floor"
-2d_physics/layer_5="red_floor"
-2d_physics/layer_6="yellow_floor"
+2d_physics/layer_3="floor"
+2d_physics/layer_4="white"
+2d_physics/layer_5="red"
+2d_physics/layer_6="yellow"
+2d_physics/layer_7="blue"
 
 [physics]
 
