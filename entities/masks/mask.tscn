@@ -1,8 +1,25 @@
 [gd_scene format=3 uid="uid://bkpte013dpw0f"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_02kko"]
+[ext_resource type="Script" uid="uid://u1nr4npga2v1" path="res://entities/masks/mask.gd" id="1_lj4tr"]
+
+[sub_resource type="Gradient" id="Gradient_lj4tr"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4s1ha"]
+gradient = SubResource("Gradient_lj4tr")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lj4tr"]
+radius = 17.0
 
 [node name="Mask" type="CharacterBody2D" unique_id=1772725403]
+collision_layer = 128
+collision_mask = 255
+script = ExtResource("1_lj4tr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=79358540]
+scale = Vector2(0.5703125, 0.5703125)
+texture = SubResource("GradientTexture2D_4s1ha")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=623091752]
-shape = SubResource("RectangleShape2D_02kko")
+rotation = -0.0037934026
+shape = SubResource("CircleShape2D_lj4tr")

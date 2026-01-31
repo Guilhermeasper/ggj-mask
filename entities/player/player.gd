@@ -34,6 +34,12 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
 	if direction != 0:
 		velocity.x = direction * SPEED
+		# Flip sprite based on direction
+		$Body.scale.x = abs($Body.scale.x) * direction
+		# Also flip the mask position? No, mask is child.
+		# If mask is top_level, it ignores parent transform.
+		# But when attached (top_level false), it inherits.
+		# If we flip parent scale, the child position (1, -28) might flip to (-1, -28) which is correct for looking left.
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
@@ -41,6 +47,16 @@ func _physics_process(delta: float) -> void:
 		_switch_mask(-1)
 	elif Input.is_action_just_pressed("mask_right"):
 		_switch_mask(1)
+		
+	# Throw mask input (using Z key as temporary bind)
+	if Input.is_key_pressed(KEY_Z):
+		# Default to whatever direction we are facing (based on scale)
+		var throw_dir = Vector2.RIGHT
+		
+		# Allow overriding with input if moving?
+		# Standard is: throw where you are facing.
+		
+		$Mask.throw(throw_dir)
 	
 	move_and_slide()
 
@@ -50,9 +66,9 @@ func _switch_mask(direction: int) -> void:
 	_extra_jumps_remaining = _current_mask.extra_jumps
 	
 	# TODO: Remover quando as mascaras tiverem suas proprias texturas
-	# var gradient = $Body/Mask/Sprite2D.texture.gradient
-	# for i in range(gradient.get_point_count()):
-	# 	gradient.set_color(i, _current_mask.color)
+	var gradient = $Mask/Sprite2D.texture.gradient
+	for i in range(gradient.get_point_count()):
+		gradient.set_color(i, _current_mask.color)
 	
 	for i in range(MASKS.size()):
 		set_collision_mask_value(i + 4, i == _mask_index || i == 0)
