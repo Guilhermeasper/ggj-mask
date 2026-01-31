@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
-enum State { IDLE, THROWN, RETURNING }
+enum MaskState {IDLE, THROWN, RETURNING}
 
 @export var speed: float = 1200.0
 @export var max_distance: float = 600.0
 @export var return_speed: float = 800.0
 @export var curve_power: float = 1500.0 # Upward force
 
-var _state: State = State.IDLE
+var _state: MaskState = MaskState.IDLE
 var _start_position: Vector2
 var _direction: Vector2
 
@@ -16,10 +16,10 @@ var _equip_position: Vector2 = Vector2(1, -28)
 
 
 func throw(dir: Vector2) -> void:
-	if _state != State.IDLE:
+	if _state != MaskState.IDLE:
 		return
 
-	_state = State.THROWN
+	_state = MaskState.THROWN
 	_direction = dir.normalized()
 	# If direction is zero (shouldn't happen), default to right
 	if _direction == Vector2.ZERO:
@@ -32,9 +32,9 @@ func throw(dir: Vector2) -> void:
 
 func _physics_process(delta: float) -> void:
 	match _state:
-		State.IDLE:
+		MaskState.IDLE:
 			pass
-		State.THROWN:
+		MaskState.THROWN:
 			# Decelerate along the throw direction
 			position.x += _direction.x * 20
 			var forward_speed = velocity.dot(_direction)
@@ -48,8 +48,8 @@ func _physics_process(delta: float) -> void:
 
 			# If we stopped moving forward or went too far
 			if forward_speed <= 0 or dist > max_distance:
-				_state = State.RETURNING
-		State.RETURNING:
+				_state = MaskState.RETURNING
+		MaskState.RETURNING:
 			# Target the equip position on the player
 			var target = get_parent().to_global(_equip_position)
 			var to_target = global_position.direction_to(target)
@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _catch() -> void:
-	_state = State.IDLE
+	_state = MaskState.IDLE
 	top_level = true
 	position = _equip_position
 	velocity = Vector2.ZERO
