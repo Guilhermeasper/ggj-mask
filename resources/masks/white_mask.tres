@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MaskData" format=3 uid="uid://cusy1m34lgja0"]
+
+[ext_resource type="Script" uid="uid://br1b54eugys3n" path="res://resources/masks/mask_data.gd" id="1_qlgte"]
+
+[resource]
+script = ExtResource("1_qlgte")
+target_collision_layer = 3
+metadata/_custom_type_script = "uid://br1b54eugys3n"

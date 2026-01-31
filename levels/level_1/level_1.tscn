@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bx4th8j58juqs" path="res://levels/level_1/level_1.gd" id="1_k1ttk"]
 [ext_resource type="PackedScene" uid="uid://drj5l6cuickqd" path="res://entities/player/player.tscn" id="2_45440"]
-[ext_resource type="Texture2D" uid="uid://ji184ndxqigu" path="res://resources/blue_texture.tres" id="3_e6u7d"]
-[ext_resource type="Texture2D" uid="uid://bg8f7uyqbsayr" path="res://resources/red_texture.tres" id="4_mxc8w"]
-[ext_resource type="Texture2D" uid="uid://p5n8ayb21ht3" path="res://resources/white_texture.tres" id="5_j48du"]
-[ext_resource type="Texture2D" uid="uid://xy16pftn0rb8" path="res://resources/yellow_texture.tres" id="6_8jbay"]
+[ext_resource type="Texture2D" uid="uid://ji184ndxqigu" path="res://resources/textures/blue_texture.tres" id="3_e6u7d"]
+[ext_resource type="Texture2D" uid="uid://bg8f7uyqbsayr" path="res://resources/textures/red_texture.tres" id="4_mxc8w"]
+[ext_resource type="Texture2D" uid="uid://p5n8ayb21ht3" path="res://resources/textures/white_texture.tres" id="5_j48du"]
+[ext_resource type="Texture2D" uid="uid://xy16pftn0rb8" path="res://resources/textures/yellow_texture.tres" id="6_8jbay"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_la5aw"]
 texture = ExtResource("3_e6u7d")

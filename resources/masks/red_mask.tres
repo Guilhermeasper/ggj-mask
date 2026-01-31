@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MaskData" format=3 uid="uid://b08uxfap5jnid"]
+
+[ext_resource type="Script" uid="uid://br1b54eugys3n" path="res://resources/masks/mask_data.gd" id="1_62dbj"]
+
+[resource]
+script = ExtResource("1_62dbj")
+mask_name = "Mascara Vermelha"
+color = Color(0.7019608, 0.07058824, 0.07058824, 1)
+target_collision_layer = 5
+metadata/_custom_type_script = "uid://br1b54eugys3n"

@@ -14,6 +14,9 @@ class_name MaskData
 @export var can_attack: bool = false
 @export var can_parry: bool = false
 
+@export_group("Physics")
+@export var target_collision_layer: int = 0
+
 @export_group("World & Enemy Modifiers")
 @export var enemy_aggro_range_multiplier: float = 1.0
 @export var enemy_damage_multiplier: float = 1.0
