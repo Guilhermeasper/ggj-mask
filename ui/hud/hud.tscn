@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bux5vlh7jk755"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1146125164]
+
+[node name="Control" type="Control" parent="." unique_id=1958738259]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.003
+offset_right = -628.0
+offset_bottom = -418.16003
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1510442947]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 160.0
+offset_bottom = 73.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer" unique_id=43726626]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/PanelContainer" unique_id=260363153]
+layout_mode = 2
+text = "Mascaras aqui"
+horizontal_alignment = 1

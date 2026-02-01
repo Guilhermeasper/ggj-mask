@@ -7,5 +7,5 @@ script = ExtResource("1_4hfbk")
 mask_name = "Mascara Azul"
 color = Color(0.2784314, 0.14117648, 0.7019608, 1)
 can_parry = true
-target_collision_layer = 4
+target_collision_layer = 7
 metadata/_custom_type_script = "uid://br1b54eugys3n"

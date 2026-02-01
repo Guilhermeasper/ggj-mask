@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dvhr26e8snalu" path="res://assets/arts/player/char_2.png" id="4_8fjmc"]
 [ext_resource type="Texture2D" uid="uid://ievsg77nhcu0" path="res://assets/arts/player/jump.png" id="4_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://xqjs72pia82m" path="res://assets/arts/player/char_3.png" id="5_qiwj3"]
+[ext_resource type="PackedScene" uid="uid://bux5vlh7jk755" path="res://ui/hud/hud.tscn" id="7_qiwj3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fkugw"]
 atlas = ExtResource("3_fkugw")
@@ -68,14 +69,15 @@ height = 108.0
 collision_mask = 8
 script = ExtResource("1_symyc")
 
-[node name="Mask" parent="." unique_id=1772725403 instance=ExtResource("2_abrql")]
-position = Vector2(0, -28)
-
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1226334890]
 position = Vector2(-1.9999999, -11.999998)
 scale = Vector2(0.24218754, 0.24218754)
 sprite_frames = SubResource("SpriteFrames_abrql")
 animation = &"walk"
+
+[node name="Mask" parent="." unique_id=1772725403 instance=ExtResource("2_abrql")]
+position = Vector2(11.999998, -45)
+scale = Vector2(0.99999994, 0.99999994)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047315707]
 position = Vector2(0, -8)
@@ -84,3 +86,7 @@ shape = SubResource("CapsuleShape2D_sfv1e")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1034638839]
 position = Vector2(104, -144)
 limit_bottom = 1000
+
+[node name="HUD" parent="Camera2D" unique_id=822787657 instance=ExtResource("7_qiwj3")]
+offset = Vector2(12, 0)
+transform = Transform2D(1, 0, 0, 1, 12, 0)

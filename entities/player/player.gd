@@ -11,16 +11,25 @@ const MASKS: Array[MaskData] = [
 	preload("res://resources/masks/blue_mask.tres"),
 ]
 
+enum MaskColors {
+	NONE = 0,
+	YELLOW = 1,
+	RED = 2,
+	BLUE = 3,
+}
+
+const INITIAL_MASK_COLOR = MaskColors.NONE
+
 @onready var background_color = %BackgroundColor
 @onready var sprite: AnimatedSprite2D = $Sprite
 
-var _current_mask: MaskData = MASKS[0]
-var _mask_index: int = 0
+var _mask_index: int = INITIAL_MASK_COLOR
+var _current_mask: MaskData = MASKS[_mask_index]
 var _extra_jumps_remaining: int = 0
 
 
 func _ready() -> void:
-	_switch_mask(0)
+	_switch_mask(INITIAL_MASK_COLOR)
 	background_color.color = _current_mask.color
 
 	var checkpoint_position = GameManager.get_respawn_position()
@@ -31,7 +40,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
-		print(global_position)
 		_extra_jumps_remaining = _current_mask.extra_jumps
 	else:
 		sprite.play("jump")
@@ -53,6 +61,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = direction * SPEED
 	if direction != 0:
 		sprite.flip_h = direction < 0
+		$Mask.position.x = -abs($Mask.position.x) if direction < 0 else abs($Mask.position.x)
 
 	if Input.is_action_just_pressed("mask_left"):
 		_switch_mask(-1)
@@ -67,9 +76,10 @@ func _physics_process(delta: float) -> void:
 
 
 func die() -> void:
-	FadeTransition.transition()
+	FadeTransition.fade_in()
 	await FadeTransition.transition_finished
 	get_tree().reload_current_scene()
+	FadeTransition.fade_out()
 
 
 func _switch_mask(direction: int) -> void:
@@ -78,9 +88,8 @@ func _switch_mask(direction: int) -> void:
 	_extra_jumps_remaining = _current_mask.extra_jumps
 	background_color.color = _current_mask.color
 
-	var gradient = $Mask/Sprite2D.texture.gradient
-	for i in range(gradient.get_point_count()):
-		gradient.set_color(i, _current_mask.color)
+	var gradient = $Mask/Polygon2D
+	gradient.color = _current_mask.color
 
 	for i in range(MASKS.size()):
 		var should_collide = i != _mask_index || i == 0

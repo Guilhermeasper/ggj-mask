@@ -9,10 +9,13 @@ var levels: Dictionary = {
 
 
 func load_level(level: int) -> void:
-	FadeTransition.transition()
-	await FadeTransition.transition_finished
+	last_safe_position = Vector2.ZERO
 	current_level = level
-	get_tree().call_deferred("change_scene_to_file", levels[level])
+	FadeTransition.fade_in()
+	await FadeTransition.transition_finished
+	get_tree().change_scene_to_file(levels[level])
+	FadeTransition.fade_out()
+	await FadeTransition.transition_finished
 
 
 func next_level() -> void:
