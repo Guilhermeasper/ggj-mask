@@ -1,25 +1,43 @@
-extends CharacterBody2D
+extends Area2D
+
 class_name Enemy
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@export var speed: float = 100.0
+@export var can_fly: bool = false
+@export var targets: Array[Marker2D] = []
+@export var sprite: AnimatedSprite2D
+
+var _targets_index := 0
+var _target_position: Vector2
+
+
+func _ready() -> void:
+	sprite = $Sprite
+	position = targets[_targets_index].global_position
+	change_target()
+
+
+func change_target() -> void:
+	_targets_index = wrapi(_targets_index + 1, 0, targets.size())
+	_target_position = targets[_targets_index].global_position
 
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	sprite.play("walk")
+	global_position = global_position.move_toward(_target_position, speed * delta)
+	if _has_reached_target():
+		change_target()
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+func flip_sprite(flip: bool) -> void:
+	sprite.flip_h = flip
 
-	move_and_slide()
+
+func _has_reached_target() -> bool:
+	var reached := global_position.distance_to(_target_position) < 5
+	return reached
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.has_method("die"):
+		body.die()

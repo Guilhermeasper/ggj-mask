@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bxgekhg0cr0ll"]
+
+[ext_resource type="Texture2D" uid="uid://cx1ky4w46wtxr" path="res://assets/arts/environment/tile_base.png" id="1_ngqfc"]
+[ext_resource type="Texture2D" uid="uid://dtq73vybcay3u" path="res://assets/arts/environment/tile_blue.png" id="2_2mkk6"]
+[ext_resource type="Texture2D" uid="uid://dw4p6wx2i7fay" path="res://assets/arts/environment/tile_red.png" id="3_a8ljw"]
+[ext_resource type="Texture2D" uid="uid://ce6pk2otldvq2" path="res://assets/arts/environment/tile_yellow.png" id="4_2sdnp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h8evi"]
+texture = ExtResource("1_ngqfc")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aftpx"]
+texture = ExtResource("2_2mkk6")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fqq0m"]
+texture = ExtResource("3_a8ljw")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2cmer"]
+texture = ExtResource("4_2sdnp")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_aw6nk"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 12
+physics_layer_0/collision_mask = 0
+physics_layer_1/collision_layer = 64
+physics_layer_1/collision_mask = 0
+physics_layer_2/collision_layer = 16
+physics_layer_2/collision_mask = 0
+physics_layer_3/collision_layer = 0
+physics_layer_3/collision_mask = 32
+sources/0 = SubResource("TileSetAtlasSource_h8evi")
+sources/1 = SubResource("TileSetAtlasSource_aftpx")
+sources/2 = SubResource("TileSetAtlasSource_fqq0m")
+sources/3 = SubResource("TileSetAtlasSource_2cmer")
+
+[node name="BaseTileMap" type="TileMapLayer" unique_id=1889470192]
+tile_set = SubResource("TileSet_aw6nk")

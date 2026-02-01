@@ -4,6 +4,5 @@
 
 [resource]
 script = ExtResource("1_qlgte")
-color = Color(1, 1, 1, 0)
 target_collision_layer = 3
 metadata/_custom_type_script = "uid://br1b54eugys3n"

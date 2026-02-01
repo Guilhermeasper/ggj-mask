@@ -1,14 +1,19 @@
 extends CharacterBody2D
 
 const SPEED := 300.0
-const JUMP_VELOCITY := -500.0
+const JUMP_VELOCITY := -550.0
 const CROUCH_SPEED := 150.0
 
+const WHITE_MASK = preload("res://resources/masks/white_mask.tres")
+const YELLOW_MASK = preload("res://resources/masks/yellow_mask.tres")
+const RED_MASK = preload("res://resources/masks/red_mask.tres")
+const BLUE_MASK = preload("res://resources/masks/blue_mask.tres")
+
 const ALL_MASKS: Array[MaskData] = [
-	preload("res://resources/masks/white_mask.tres"),
-	preload("res://resources/masks/red_mask.tres"),
-	preload("res://resources/masks/yellow_mask.tres"),
-	preload("res://resources/masks/blue_mask.tres"),
+	WHITE_MASK,
+	YELLOW_MASK,
+	RED_MASK,
+	BLUE_MASK,
 ]
 
 enum MaskColors {

@@ -1,26 +1,18 @@
-[gd_scene format=3 uid="uid://h2a5gpecjmvp"]
+[gd_scene format=3 uid="uid://c1fgi8hrm1760"]
 
 [ext_resource type="Script" uid="uid://cd2dj742ybtwn" path="res://entities/enemies/enemy.gd" id="1_wqcwe"]
-[ext_resource type="Texture2D" uid="uid://ji184ndxqigu" path="res://resources/textures/blue_texture.tres" id="2_5lf1o"]
-[ext_resource type="Script" uid="uid://bsdty4ocp1eh7" path="res://scripts/state_machine.gd" id="3_msovg"]
-[ext_resource type="Script" uid="uid://b6rokvgxwxil3" path="res://entities/enemies/idle_state.gd" id="4_twyc1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_msovg"]
-size = Vector2(63, 62)
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqcwe"]
+radius = 31.016125
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1112221088]
+[node name="Enemy" type="Area2D" unique_id=1256522322]
 script = ExtResource("1_wqcwe")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=54192650]
-texture = ExtResource("2_5lf1o")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1285792069]
+shape = SubResource("CircleShape2D_wqcwe")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1091345457 node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_msovg")
-initial_state = NodePath("IdleState")
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1756506579]
+position = Vector2(-3, 35)
+scale = Vector2(0.34848395, 0.3567102)
 
-[node name="IdleState" type="Node" parent="StateMachine" unique_id=684252695]
-script = ExtResource("4_twyc1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=675624350]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_msovg")
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
