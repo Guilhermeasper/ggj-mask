@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_62dbj")
-mask_name = "Mascara Vermelha"
-color = Color(0.7019608, 0.07058824, 0.07058824, 1)
+mask_name = "red"
+color = Color(0.643, 0, 0.027, 1)
 can_attack = true
 target_collision_layer = 5
 metadata/_custom_type_script = "uid://br1b54eugys3n"

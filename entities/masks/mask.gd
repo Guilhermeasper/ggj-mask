@@ -1,11 +1,17 @@
 extends CharacterBody2D
 
-enum MaskState {IDLE, THROWN, RETURNING}
+enum MaskState { IDLE, THROWN, RETURNING }
 
 @export var speed: float = 1200.0
 @export var max_distance: float = 600.0
 @export var return_speed: float = 800.0
 @export var curve_power: float = 1500.0 # Upward force
+
+@onready var yellow_sprite = $Yellow
+@onready var red_sprite = $Red
+@onready var blue_sprite = $Blue
+
+var _mask_color = "none"
 
 var _state: MaskState = MaskState.IDLE
 var _start_position: Vector2
@@ -30,10 +36,28 @@ func throw(dir: Vector2) -> void:
 	velocity = _direction * speed
 
 
+func _ready() -> void:
+	yellow_sprite.visible = false
+	red_sprite.visible = false
+	blue_sprite.visible = false
+
+
+func set_mask_color(color: String) -> void:
+	_mask_color = color
+
+
+func flip_masks(flip: bool) -> void:
+	yellow_sprite.flip_h = flip
+	red_sprite.flip_h = flip
+	blue_sprite.flip_h = flip
+
+
 func _physics_process(delta: float) -> void:
 	match _state:
 		MaskState.IDLE:
-			pass
+			yellow_sprite.visible = _mask_color == "yellow"
+			red_sprite.visible = _mask_color == "red"
+			blue_sprite.visible = _mask_color == "blue"
 		MaskState.THROWN:
 			# Decelerate along the throw direction
 			position.x += _direction.x * 20

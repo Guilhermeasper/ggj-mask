@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bx4th8j58juqs" path="res://levels/level_1/level_1.gd" id="1_k1ttk"]
 [ext_resource type="PackedScene" uid="uid://drj5l6cuickqd" path="res://entities/player/player.tscn" id="2_45440"]
+[ext_resource type="PackedScene" uid="uid://wqoowr2ds3q7" path="res://scenes/background.tscn" id="3_7rikf"]
 [ext_resource type="Texture2D" uid="uid://cx1ky4w46wtxr" path="res://assets/arts/environment/tile_base.png" id="4_hyp3v"]
 [ext_resource type="PackedScene" uid="uid://h4gr4ej6ygth" path="res://entities/player/death_area.tscn" id="7_mxc8w"]
 [ext_resource type="PackedScene" uid="uid://dihji23xxltkc" path="res://scenes/checkpoint.tscn" id="8_j48du"]
@@ -51,7 +52,7 @@ texture_region_size = Vector2i(64, 64)
 texture = ExtResource("12_7rikf")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
-0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-30.917944, -32, 32, -32, 32, 32, -30.917946, 32)
 
 [sub_resource type="TileSet" id="TileSet_8jbay"]
 tile_size = Vector2i(64, 64)
@@ -76,17 +77,8 @@ script = ExtResource("1_k1ttk")
 [node name="DeathArea" parent="." unique_id=996170154 instance=ExtResource("7_mxc8w")]
 position = Vector2(956, 919)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=495964767]
-layer = -1
-
-[node name="BackgroundColor" type="ColorRect" parent="CanvasLayer" unique_id=619720857]
+[node name="CanvasLayer" parent="." unique_id=699901549 instance=ExtResource("3_7rikf")]
 unique_name_in_owner = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.24840015, 0.24840018, 0.24840015, 1)
 
 [node name="Checkpoint" parent="." unique_id=305946423 node_paths=PackedStringArray("checkpoint_marker") instance=ExtResource("8_j48du")]
 position = Vector2(786, 595)

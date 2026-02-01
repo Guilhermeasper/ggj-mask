@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_qlgte")
+mask_name = "white"
 target_collision_layer = 3
 metadata/_custom_type_script = "uid://br1b54eugys3n"

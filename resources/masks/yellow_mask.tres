@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_vqe7d")
-mask_name = "Mascara Amarela"
-color = Color(0.8235294, 0.9019608, 0, 1)
+mask_name = "yellow"
+color = Color(0.894, 0.596, 0.016, 1)
 extra_jumps = 1
 target_collision_layer = 6
 metadata/_custom_type_script = "uid://br1b54eugys3n"

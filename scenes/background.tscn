@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://wqoowr2ds3q7"]
+
+[ext_resource type="Shader" uid="uid://riv3m0d4s7aj" path="res://levels/level_1/level_1.gdshader" id="1_bkp1e"]
+[ext_resource type="Script" uid="uid://dh2d0dhhrlb7v" path="res://scenes/background.gd" id="1_y0upk"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7rikf"]
+frequency = 0.5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ov0dm"]
+noise = SubResource("FastNoiseLite_7rikf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ov0dm"]
+shader = ExtResource("1_bkp1e")
+shader_parameter/noise_img = SubResource("NoiseTexture2D_ov0dm")
+shader_parameter/strength = 0.7090000336775
+shader_parameter/speed = 0.8610000408975
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=699901549]
+layer = -1
+script = ExtResource("1_y0upk")
+
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=682766793]
+material = SubResource("ShaderMaterial_ov0dm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=870248582]
+visible = false

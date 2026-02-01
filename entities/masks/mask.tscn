@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://bkpte013dpw0f"]
 
 [ext_resource type="Script" uid="uid://u1nr4npga2v1" path="res://entities/masks/mask.gd" id="1_lj4tr"]
+[ext_resource type="Texture2D" uid="uid://e5m0qmqg7muy" path="res://assets/arts/masks/Y LATERAL.png" id="2_4s1ha"]
+[ext_resource type="Texture2D" uid="uid://2iwiurb0l6pw" path="res://assets/arts/masks/B LATERAL.png" id="2_fu3ew"]
+[ext_resource type="Texture2D" uid="uid://byiaqmmv0bmrt" path="res://assets/arts/masks/R LATERAL.png" id="4_xq0al"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lj4tr"]
 radius = 17.0
@@ -10,10 +13,23 @@ collision_layer = 128
 collision_mask = 255
 script = ExtResource("1_lj4tr")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1028192543]
-color = Color(1, 1, 1, 0)
-polygon = PackedVector2Array(0, -16, 0, 17, 4, 16, 7, 15, 9, 14, 10, 12, 12, 11, 13, 10, 14, 8, 15, 6, 16, 4, 17, 2, 17, -1, 17, -3, 16, -5, 15, -6, 14, -8, 13, -9, 12, -11, 11, -11, 10, -12, 9, -13, 8, -14, 7, -14, 6, -15, 5, -15, 4, -16, 3, -16, 1, -16)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=623091752]
 rotation = -0.0037934026
 shape = SubResource("CircleShape2D_lj4tr")
+
+[node name="Yellow" type="Sprite2D" parent="." unique_id=343686683]
+visible = false
+position = Vector2(-9.999999, -5)
+scale = Vector2(0.26171875, 0.26171875)
+texture = ExtResource("2_4s1ha")
+
+[node name="Blue" type="Sprite2D" parent="." unique_id=1152375055]
+position = Vector2(-11.000001, -6.0000005)
+scale = Vector2(0.12988283, 0.12988283)
+texture = ExtResource("2_fu3ew")
+
+[node name="Red" type="Sprite2D" parent="." unique_id=579577273]
+visible = false
+position = Vector2(-10, -4)
+scale = Vector2(0.26464844, 0.26464844)
+texture = ExtResource("4_xq0al")

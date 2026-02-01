@@ -25,19 +25,22 @@ enum MaskColors {
 
 const INITIAL_MASK_COLOR = MaskColors.NONE
 
-@onready var background_color = %BackgroundColor
+@onready var background_color = %CanvasLayer
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var mask_node = $Mask
 
 var _mask_index: int = INITIAL_MASK_COLOR
 var _current_mask: MaskData = ALL_MASKS[INITIAL_MASK_COLOR]
 var _extra_jumps_remaining: int = 0
-var _available_masks: Array[MaskData] = [ALL_MASKS[INITIAL_MASK_COLOR]]
+var _available_masks: Array[MaskData] = ALL_MASKS
+var mask_default_position: Vector2
+var mask_offset: int = 12
 
 
 func _ready() -> void:
 	set_collision_layers()
-	background_color.color = _current_mask.color
+	mask_default_position = mask_node.position
+	background_color.change_color(_current_mask.color)
 
 	var checkpoint_position = GameManager.get_respawn_position()
 
@@ -68,7 +71,11 @@ func _physics_process(delta: float) -> void:
 	velocity.x = direction * SPEED
 	if direction != 0:
 		sprite.flip_h = direction < 0
-		mask_node.position.x = -abs(mask_node.position.x) if direction < 0 else abs(mask_node.position.x)
+		mask_node.flip_masks(direction < 0)
+		if direction < 0:
+			mask_node.position.x = mask_default_position.x - mask_offset
+		else:
+			mask_node.position.x = mask_default_position.x
 
 	if Input.is_action_just_pressed("mask_left"):
 		_switch_mask(-1)
@@ -106,10 +113,8 @@ func _switch_mask(direction: int) -> void:
 	_current_mask = _available_masks[_mask_index]
 
 	_extra_jumps_remaining = _current_mask.extra_jumps
-	background_color.color = _current_mask.color
-
-	var gradient = mask_node.get_node("Polygon2D")
-	gradient.color = _current_mask.color
+	background_color.change_color(_current_mask.color)
+	mask_node.set_mask_color(_current_mask.mask_name)
 
 	set_collision_layers()
 

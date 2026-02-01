@@ -74,6 +74,8 @@ position = Vector2(-1.9999999, -11.999998)
 scale = Vector2(0.24218754, 0.24218754)
 sprite_frames = SubResource("SpriteFrames_abrql")
 animation = &"walk"
+frame = 2
+frame_progress = 0.25984266
 
 [node name="Mask" parent="." unique_id=1772725403 instance=ExtResource("2_abrql")]
 position = Vector2(11.999998, -45)

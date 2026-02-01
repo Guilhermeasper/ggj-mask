@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://4lidnt60nfe0" path="res://assets/arts/enemies/1.png" id="9_cp47v"]
 [ext_resource type="Texture2D" uid="uid://b4b33i8qhx1uu" path="res://assets/arts/enemies/2.png" id="10_aq41y"]
 [ext_resource type="Texture2D" uid="uid://6kr75ld4h7t1" path="res://assets/arts/enemies/3.png" id="11_5ts7o"]
+[ext_resource type="PackedScene" uid="uid://wqoowr2ds3q7" path="res://scenes/background.tscn" id="16_aq41y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aq41y"]
 texture = ExtResource("1_8y2in")
@@ -207,6 +208,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="TileSet" id="TileSet_cp47v"]
+
 [node name="Level2" type="Node2D" unique_id=1281323900]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1596973984]
@@ -252,25 +255,6 @@ sprite_frames = SubResource("SpriteFrames_lnqnw")
 [node name="DeathArea" parent="." unique_id=996170154 instance=ExtResource("6_5ptf1")]
 position = Vector2(767, 920)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=342787156]
-layer = -1
-
-[node name="BackgroundColor" type="ColorRect" parent="CanvasLayer" unique_id=1070512777]
-unique_name_in_owner = true
-visible = false
-anchors_preset = -1
-anchor_top = -5.490278
-anchor_right = 6.490278
-anchor_bottom = 1.0
-offset_left = -1463.0
-offset_top = 883.0
-offset_right = -1463.0
-offset_bottom = 883.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.24840015, 0.24840018, 0.24840015, 1)
-metadata/_edit_use_anchors_ = true
-
 [node name="Checkpoint" parent="." unique_id=305946423 node_paths=PackedStringArray("checkpoint_marker") instance=ExtResource("7_2smvo")]
 position = Vector2(304.00003, -35.99994)
 scale = Vector2(0.8, 0.8)
@@ -285,6 +269,12 @@ position = Vector2(4928, 291)
 [node name="Player" parent="." unique_id=945925870 instance=ExtResource("5_lnqnw")]
 position = Vector2(2782, 321)
 collision_mask = 4
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=333398459]
+tile_set = SubResource("TileSet_cp47v")
+
+[node name="CanvasLayer" parent="." unique_id=699901549 instance=ExtResource("16_aq41y")]
+unique_name_in_owner = true
 
 [editable path="Enemies/Bat"]
 [editable path="Enemies/Wall"]
