@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b6kerj6iclmy3" path="res://entities/collectable/collectable_item.tscn" id="10_qbdb0"]
 [ext_resource type="Texture2D" uid="uid://dw4p6wx2i7fay" path="res://assets/arts/environment/tile_red.png" id="11_1ow6f"]
 [ext_resource type="Resource" uid="uid://dsf7hi3jmmc2x" path="res://resources/masks/yellow_mask.tres" id="11_qbdb0"]
-[ext_resource type="Texture2D" uid="uid://ce6pk2otldvq2" path="res://assets/arts/environment/tile_yellow.png" id="12_7rikf"]
+[ext_resource type="Texture2D" uid="uid://chhtbo2au1ayt" path="res://assets/arts/environment/tile_yellow_1.png" id="14_7rikf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ow6f"]
 atlas = ExtResource("9_1ow6f")
@@ -49,10 +49,10 @@ texture_region_size = Vector2i(64, 64)
 0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lwxes"]
-texture = ExtResource("12_7rikf")
+texture = ExtResource("14_7rikf")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
-0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-30.917944, -32, 32, -32, 32, 32, -30.917946, 32)
+0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-30.813004, -32, 32, -32, 32, 32, -30.508427, 32)
 
 [sub_resource type="TileSet" id="TileSet_8jbay"]
 tile_size = Vector2i(64, 64)
@@ -110,8 +110,7 @@ offset_bottom = 75.0
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_7rikf")
 theme_override_font_sizes/font_size = 24
-text = "Usando a mascara amarela
-você pode dar um pulo extra no ar"
+text = "Equipe a mascara utilizando Q ou E"
 autowrap_mode = 3
 
 [node name="Control3" type="Control" parent="." unique_id=1061412268]

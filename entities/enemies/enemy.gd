@@ -14,8 +14,9 @@ var _target_position: Vector2
 
 func _ready() -> void:
 	sprite.play("default")
-	position = targets[_targets_index].global_position
-	change_target()
+	if targets.size() > 0:
+		position = targets[_targets_index].global_position
+		change_target()
 
 
 func change_target() -> void:
@@ -24,6 +25,8 @@ func change_target() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if targets.size() == 0:
+		return
 	global_position = global_position.move_toward(_target_position, speed * delta)
 	if _has_reached_target():
 		change_target()

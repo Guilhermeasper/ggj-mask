@@ -18,7 +18,7 @@ var masks: Dictionary = {
 var current_mask: MaskData = masks["white"]
 var current_mask_id = 0
 
-var available_masks: Array[MaskData] = [masks["white"]]
+var available_masks: Array[MaskData] = [masks["white"], masks["yellow"], masks["red"], masks["blue"]]
 
 
 func load_level(level: int) -> void:

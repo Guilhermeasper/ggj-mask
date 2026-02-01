@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://4lidnt60nfe0" path="res://assets/arts/enemies/1.png" id="9_cp47v"]
 [ext_resource type="Texture2D" uid="uid://b4b33i8qhx1uu" path="res://assets/arts/enemies/2.png" id="10_aq41y"]
 [ext_resource type="Texture2D" uid="uid://6kr75ld4h7t1" path="res://assets/arts/enemies/3.png" id="11_5ts7o"]
+[ext_resource type="Texture2D" uid="uid://chhtbo2au1ayt" path="res://assets/arts/environment/tile_yellow_1.png" id="16_1vf62"]
 [ext_resource type="PackedScene" uid="uid://wqoowr2ds3q7" path="res://scenes/background.tscn" id="16_aq41y"]
 [ext_resource type="PackedScene" uid="uid://b6kerj6iclmy3" path="res://entities/collectable/collectable_item.tscn" id="17_dj0pt"]
 [ext_resource type="Texture2D" uid="uid://cx1ky4w46wtxr" path="res://assets/arts/environment/tile_base.png" id="17_yiikh"]
@@ -18,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://dtq73vybcay3u" path="res://assets/arts/environment/tile_blue.png" id="18_fq0us"]
 [ext_resource type="Texture2D" uid="uid://63ma4uumlqgq" path="res://assets/arts/masks/RED.png" id="19_1vf62"]
 [ext_resource type="Texture2D" uid="uid://dw4p6wx2i7fay" path="res://assets/arts/environment/tile_red.png" id="19_kgdtm"]
-[ext_resource type="Texture2D" uid="uid://ce6pk2otldvq2" path="res://assets/arts/environment/tile_yellow.png" id="20_12l1j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ubkp0"]
 animations = [{
@@ -75,7 +75,7 @@ texture_region_size = Vector2i(64, 64)
 0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kgdtm"]
-texture = ExtResource("20_12l1j")
+texture = ExtResource("16_1vf62")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-30.917946, -32, 32, -32, 32, 32, -30.97525, 32)
@@ -150,7 +150,7 @@ position = Vector2(282, -32)
 position = Vector2(4930, 348)
 
 [node name="Player" parent="." unique_id=945925870 instance=ExtResource("5_lnqnw")]
-position = Vector2(4674, 404)
+position = Vector2(-198, -5)
 collision_mask = 4
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=333398459]

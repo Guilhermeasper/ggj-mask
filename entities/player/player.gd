@@ -4,6 +4,7 @@ const SPEED := 300.0
 const JUMP_VELOCITY := -550.0
 const CROUCH_SPEED := 150.0
 const PROJECTILE_SCENE := preload("res://entities/player/projectile.tscn")
+const COYOTE_TIME := 0.1
 
 @onready var background_color = %CanvasLayer
 @onready var sprite: AnimatedSprite2D = $Sprite
@@ -13,6 +14,7 @@ const PROJECTILE_SCENE := preload("res://entities/player/projectile.tscn")
 var _extra_jumps_remaining: int = 0
 var _facing_direction := Vector2.RIGHT
 var _can_shoot := true
+var _coyote_timer := 0.0
 var mask_default_position: Vector2
 var mask_offset: int = 12
 
@@ -35,15 +37,18 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		_extra_jumps_remaining = GameManager.current_mask.extra_jumps
+		_coyote_timer = COYOTE_TIME
 	else:
 		sprite.play("jump")
 		velocity += get_gravity() * delta
+		_coyote_timer -= delta
 
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
+		if _coyote_timer > 0:
 			velocity.y = JUMP_VELOCITY
+			_coyote_timer = 0.0
 		elif _extra_jumps_remaining > 0:
-			velocity.y = JUMP_VELOCITY
+			velocity.y = JUMP_VELOCITY * 1.2
 			_extra_jumps_remaining -= 1
 
 	var direction := Input.get_axis("left", "right")
