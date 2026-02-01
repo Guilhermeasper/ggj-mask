@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cmamws6t4khv5"]
+
+[ext_resource type="Texture2D" uid="uid://dwxb3k8g564eh" path="res://assets/arts/player/projectile_1.png" id="1_bvrcp"]
+[ext_resource type="Script" uid="uid://b1fc3pj0vfy83" path="res://entities/player/projectile.gd" id="1_cru8k"]
+[ext_resource type="Texture2D" uid="uid://44k1q8ltga3q" path="res://assets/arts/player/projectile_2.png" id="2_cru8k"]
+[ext_resource type="Texture2D" uid="uid://dujmkkevql7dy" path="res://assets/arts/player/projectile_3.png" id="3_60bmr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hen0p"]
+radius = 6.0
+height = 26.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qoqtv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_60bmr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cru8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_bvrcp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Projectile" type="Area2D" unique_id=410542147]
+script = ExtResource("1_cru8k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1467609486]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_hen0p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2086408469]
+position = Vector2(-5.000001, 2.9999998)
+scale = Vector2(0.34375, 0.34375)
+sprite_frames = SubResource("SpriteFrames_qoqtv")
+frame = 1
+frame_progress = 0.6506186
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

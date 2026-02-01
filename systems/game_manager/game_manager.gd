@@ -5,6 +5,7 @@ var current_level: int = 1
 var levels: Dictionary = {
 	1: "res://levels/level_1/level_1.tscn",
 	2: "res://levels/level_2/level_2.tscn",
+	3: "res://levels/level_3/level_3.tscn",
 }
 
 var masks: Dictionary = {

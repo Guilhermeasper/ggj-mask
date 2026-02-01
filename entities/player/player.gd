@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED := 300.0
 const JUMP_VELOCITY := -550.0
 const CROUCH_SPEED := 150.0
+const PROJECTILE_SCENE := preload("res://entities/player/projectile.tscn")
 
 @onready var background_color = %CanvasLayer
 @onready var sprite: AnimatedSprite2D = $Sprite
@@ -10,6 +11,8 @@ const CROUCH_SPEED := 150.0
 @onready var hud = $Camera2D/HUD
 
 var _extra_jumps_remaining: int = 0
+var _facing_direction := Vector2.RIGHT
+var _can_shoot := true
 var mask_default_position: Vector2
 var mask_offset: int = 12
 
@@ -51,6 +54,7 @@ func _physics_process(delta: float) -> void:
 
 	velocity.x = direction * SPEED
 	if direction != 0:
+		_facing_direction = Vector2.LEFT if direction < 0 else Vector2.RIGHT
 		sprite.flip_h = direction < 0
 		mask_node.flip_masks(direction < 0)
 		if direction < 0:
@@ -62,10 +66,8 @@ func _physics_process(delta: float) -> void:
 		_switch_mask(-1)
 	elif Input.is_action_just_pressed("mask_right"):
 		_switch_mask(1)
-
-	if Input.is_key_pressed(KEY_Z):
-		var throw_dir = Vector2.RIGHT
-		mask_node.throw(throw_dir)
+	elif Input.is_action_just_pressed("shoot") and GameManager.current_mask.can_attack and _can_shoot:
+		_shoot_projectile()
 
 	move_and_slide()
 
@@ -104,3 +106,14 @@ func _switch_mask(direction: int) -> void:
 
 func set_respawn_position(checkpoint_position: Vector2) -> void:
 	GameManager.save_player_position(checkpoint_position)
+
+
+func _shoot_projectile() -> void:
+	_can_shoot = false
+	get_tree().create_timer(0.5).timeout.connect(func(): _can_shoot = true)
+	var projectile := PROJECTILE_SCENE.instantiate()
+	projectile.global_position = global_position
+	projectile.direction = _facing_direction
+	if _facing_direction.x < 0:
+		projectile.rotation = PI
+	get_parent().add_child(projectile)

@@ -1,31 +1,76 @@
 [gd_scene format=3 uid="uid://jq7wxian3ole"]
 
 [ext_resource type="Script" uid="uid://bk6f5f41k5adq" path="res://levels/main_menu/main_menu.gd" id="1_nt5r4"]
-[ext_resource type="StyleBox" uid="uid://ct4pswsrivo72" path="res://ui/components/button.tres" id="2_u4e7g"]
-[ext_resource type="StyleBox" uid="uid://bopiy5diht018" path="res://ui/components/button_pressed.tres" id="3_86fa0"]
-[ext_resource type="StyleBox" uid="uid://dkyasodfph0qp" path="res://ui/components/button_hover.tres" id="4_h370v"]
+[ext_resource type="Texture2D" uid="uid://b0eidf6nrexy4" path="res://assets/arts/menu/menu_base.jpg" id="2_h370v"]
+[ext_resource type="Texture2D" uid="uid://cua6u2avbsyo5" path="res://assets/arts/menu/menu_yellow.jpg" id="3_qhxwq"]
+[ext_resource type="Texture2D" uid="uid://dg4e815owss86" path="res://assets/arts/menu/menu_red.jpg" id="4_vxpir"]
+[ext_resource type="Texture2D" uid="uid://7aakgc0ccwvl" path="res://assets/arts/menu/menu_blue.jpg" id="5_dedsy"]
+[ext_resource type="FontFile" uid="uid://baw3cee3qx2cb" path="res://assets/fonts/Sandbox Melodrama.ttf" id="6_qhxwq"]
 
-[sub_resource type="Theme" id="Theme_nt5r4"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2nemu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h370v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qhxwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vxpir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dedsy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="MainMenu" type="Node2D" unique_id=595438045]
 script = ExtResource("1_nt5r4")
 
-[node name="Button" type="Button" parent="." unique_id=2028622313]
-offset_left = 600.0
-offset_top = 328.0
-offset_right = 685.0
-offset_bottom = 378.0
-theme = SubResource("Theme_nt5r4")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1278910496]
+position = Vector2(630, 312)
+scale = Vector2(0.51125, 0.51125)
+sprite_frames = SubResource("SpriteFrames_2nemu")
+autoplay = "default"
+frame_progress = 0.58703214
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2051282936]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1348965597]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="." unique_id=608263305]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -7.0
+offset_right = 1279.0
+offset_bottom = 720.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=964696179]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -294.5
+offset_top = -72.0
+offset_right = 294.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 120
+
+[node name="Label" type="Label" parent="Control/MarginContainer" unique_id=132422152]
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_disabled_color = Color(0.22352941, 0.22352941, 0.22352941, 1)
-theme_override_font_sizes/font_size = 36
-theme_override_styles/normal = ExtResource("2_u4e7g")
-theme_override_styles/pressed = ExtResource("3_86fa0")
-theme_override_styles/hover = ExtResource("4_h370v")
-theme_override_styles/disabled = ExtResource("4_h370v")
-theme_override_styles/focus = ExtResource("4_h370v")
-text = "Start"
+theme_override_fonts/font = ExtResource("6_qhxwq")
+theme_override_font_sizes/font_size = 72
+text = "pressione qualquer tecla para continuar"

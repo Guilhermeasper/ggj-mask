@@ -32,6 +32,10 @@ func _physics_process(delta: float) -> void:
 	sprite.flip_h = direction.x < 0
 
 
+func flip_sprite(flip: bool) -> void:
+	sprite.flip_h = flip
+
+
 func _has_reached_target() -> bool:
 	var reached := global_position.distance_to(_target_position) < 5
 	return reached
@@ -40,3 +44,7 @@ func _has_reached_target() -> bool:
 func _on_body_entered(body: Node) -> void:
 	if body.has_method("die"):
 		body.die()
+
+
+func die() -> void:
+	queue_free()
