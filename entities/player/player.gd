@@ -4,35 +4,12 @@ const SPEED := 300.0
 const JUMP_VELOCITY := -550.0
 const CROUCH_SPEED := 150.0
 
-const WHITE_MASK = preload("res://resources/masks/white_mask.tres")
-const YELLOW_MASK = preload("res://resources/masks/yellow_mask.tres")
-const RED_MASK = preload("res://resources/masks/red_mask.tres")
-const BLUE_MASK = preload("res://resources/masks/blue_mask.tres")
-
-const ALL_MASKS: Array[MaskData] = [
-	WHITE_MASK,
-	YELLOW_MASK,
-	RED_MASK,
-	BLUE_MASK,
-]
-
-enum MaskColors {
-	NONE = 0,
-	YELLOW = 1,
-	RED = 2,
-	BLUE = 3,
-}
-
-const INITIAL_MASK_COLOR = MaskColors.NONE
-
 @onready var background_color = %CanvasLayer
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var mask_node = $Mask
+@onready var hud = $Camera2D/HUD
 
-var _mask_index: int = INITIAL_MASK_COLOR
-var _current_mask: MaskData = ALL_MASKS[INITIAL_MASK_COLOR]
 var _extra_jumps_remaining: int = 0
-var _available_masks: Array[MaskData] = [WHITE_MASK]
 var mask_default_position: Vector2
 var mask_offset: int = 12
 
@@ -40,9 +17,13 @@ var mask_offset: int = 12
 func _ready() -> void:
 	set_collision_layers()
 	mask_default_position = mask_node.position
-	background_color.change_color(_current_mask.mask_name)
+	background_color.change_color(GameManager.current_mask.mask_name)
 
 	var checkpoint_position = GameManager.get_respawn_position()
+	for mask in GameManager.available_masks:
+		hud.show_mask(mask.mask_name)
+	GameManager.current_mask = GameManager.masks["white"]
+	hud.select_mask(GameManager.current_mask.mask_name)
 
 	if checkpoint_position != Vector2.ZERO:
 		global_position = checkpoint_position
@@ -50,7 +31,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
-		_extra_jumps_remaining = _current_mask.extra_jumps
+		_extra_jumps_remaining = GameManager.current_mask.extra_jumps
 	else:
 		sprite.play("jump")
 		velocity += get_gravity() * delta
@@ -97,24 +78,26 @@ func die() -> void:
 
 
 func collect_mask(mask: MaskData) -> void:
-	_available_masks.append(mask)
+	GameManager.available_masks.append(mask)
+	hud.show_mask(mask.mask_name)
 
 
 func set_collision_layers() -> void:
 	for collision_mask_index in range(5, 8):
-		var should_collide = collision_mask_index != _current_mask.target_collision_layer
+		var should_collide = collision_mask_index != GameManager.current_mask.target_collision_layer
 		set_collision_mask_value(collision_mask_index, should_collide)
 		mask_node.set_collision_mask_value(collision_mask_index, should_collide)
 
 
 func _switch_mask(direction: int) -> void:
 	# update mask
-	_mask_index = wrapi(_mask_index + direction, 0, _available_masks.size())
-	_current_mask = _available_masks[_mask_index]
+	GameManager.current_mask_id = wrapi(GameManager.current_mask_id + direction, 0, GameManager.available_masks.size())
+	GameManager.current_mask = GameManager.available_masks[GameManager.current_mask_id]
 
-	_extra_jumps_remaining = _current_mask.extra_jumps
-	background_color.change_color(_current_mask.mask_name)
-	mask_node.set_mask_color(_current_mask.mask_name)
+	_extra_jumps_remaining = GameManager.current_mask.extra_jumps
+	background_color.change_color(GameManager.current_mask.mask_name)
+	mask_node.set_mask_color(GameManager.current_mask.mask_name)
+	hud.select_mask(GameManager.current_mask.mask_name)
 
 	set_collision_layers()
 

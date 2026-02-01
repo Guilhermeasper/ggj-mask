@@ -1,24 +1,46 @@
 [gd_scene format=3 uid="uid://bux5vlh7jk755"]
 
+[ext_resource type="Texture2D" uid="uid://pibdvue3hd53" path="res://assets/arts/masks/YELLOW.png" id="1_e0nub"]
+[ext_resource type="Script" uid="uid://ck14tfsrkwutl" path="res://ui/hud/hud.gd" id="1_w75iv"]
+[ext_resource type="Texture2D" uid="uid://63ma4uumlqgq" path="res://assets/arts/masks/RED.png" id="2_w75iv"]
+[ext_resource type="Texture2D" uid="uid://ddr7m3w1m8rn2" path="res://assets/arts/masks/BLUE.png" id="3_imuuq"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_e0nub"]
+
 [node name="HUD" type="CanvasLayer" unique_id=1146125164]
+script = ExtResource("1_w75iv")
 
 [node name="Control" type="Control" parent="." unique_id=1958738259]
 layout_mode = 3
 anchor_right = 1.0
 anchor_bottom = 1.003
-offset_right = -628.0
-offset_bottom = -418.16003
+offset_right = -882.0
+offset_bottom = -597.16003
 
 [node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1510442947]
-layout_mode = 1
-anchors_preset = -1
-offset_right = 160.0
-offset_bottom = 73.0
+layout_mode = 0
+offset_right = 392.0
+offset_bottom = 128.0
 
 [node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer" unique_id=43726626]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_e0nub")
 
-[node name="Label" type="Label" parent="Control/MarginContainer/PanelContainer" unique_id=260363153]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/PanelContainer" unique_id=749109385]
 layout_mode = 2
-text = "Mascaras aqui"
-horizontal_alignment = 1
+size_flags_horizontal = 0
+
+[node name="yellow_mask_ui" type="TextureRect" parent="Control/MarginContainer/PanelContainer/HBoxContainer" unique_id=889675836]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_e0nub")
+
+[node name="red_mask_ui" type="TextureRect" parent="Control/MarginContainer/PanelContainer/HBoxContainer" unique_id=1112935319]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_w75iv")
+
+[node name="blue_mask_ui" type="TextureRect" parent="Control/MarginContainer/PanelContainer/HBoxContainer" unique_id=1821647578]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_imuuq")

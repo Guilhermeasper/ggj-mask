@@ -7,6 +7,18 @@ var levels: Dictionary = {
 	2: "res://levels/level_2/level_2.tscn",
 }
 
+var masks: Dictionary = {
+	"white": preload("res://resources/masks/white_mask.tres"),
+	"yellow": preload("res://resources/masks/yellow_mask.tres"),
+	"red": preload("res://resources/masks/red_mask.tres"),
+	"blue": preload("res://resources/masks/blue_mask.tres"),
+}
+
+var current_mask: MaskData = masks["white"]
+var current_mask_id = 0
+
+var available_masks: Array[MaskData] = [masks["white"]]
+
 
 func load_level(level: int) -> void:
 	last_safe_position = Vector2.ZERO
