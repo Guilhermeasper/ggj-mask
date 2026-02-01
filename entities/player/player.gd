@@ -12,6 +12,7 @@ const MASKS: Array[MaskData] = [
 ]
 
 @onready var background_color = %BackgroundColor
+@onready var sprite: AnimatedSprite2D = $Sprite
 
 var _current_mask: MaskData = MASKS[0]
 var _mask_index: int = 0
@@ -33,6 +34,7 @@ func _physics_process(delta: float) -> void:
 		print(global_position)
 		_extra_jumps_remaining = _current_mask.extra_jumps
 	else:
+		sprite.play("jump")
 		velocity += get_gravity() * delta
 
 	if Input.is_action_just_pressed("jump"):
@@ -43,11 +45,14 @@ func _physics_process(delta: float) -> void:
 			_extra_jumps_remaining -= 1
 
 	var direction := Input.get_axis("left", "right")
+	if (direction != 0) && is_on_floor():
+		sprite.play("walk")
+	elif is_on_floor():
+		sprite.play("idle")
+
+	velocity.x = direction * SPEED
 	if direction != 0:
-		velocity.x = direction * SPEED
-		$Body.scale.x = abs($Body.scale.x) * direction
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		sprite.flip_h = direction < 0
 
 	if Input.is_action_just_pressed("mask_left"):
 		_switch_mask(-1)

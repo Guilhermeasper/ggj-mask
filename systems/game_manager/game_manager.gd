@@ -9,6 +9,8 @@ var levels: Dictionary = {
 
 
 func load_level(level: int) -> void:
+	FadeTransition.transition()
+	await FadeTransition.transition_finished
 	current_level = level
 	get_tree().call_deferred("change_scene_to_file", levels[level])
 

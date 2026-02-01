@@ -202,7 +202,7 @@ position = Vector2(2797, -288)
 script = ExtResource("10_la5aw")
 
 [node name="Player" parent="." unique_id=945925870 instance=ExtResource("2_45440")]
-position = Vector2(2537, -275)
+position = Vector2(76, 622)
 collision_mask = 4
 
 [connection signal="body_entered" from="FinishPoint" to="FinishPoint" method="_on_body_entered"]
