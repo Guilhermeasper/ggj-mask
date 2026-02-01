@@ -5,14 +5,15 @@ class_name Enemy
 @export var speed: float = 100.0
 @export var can_fly: bool = false
 @export var targets: Array[Marker2D] = []
-@export var sprite: AnimatedSprite2D
+
+@onready var sprite: AnimatedSprite2D = $Sprite
 
 var _targets_index := 0
 var _target_position: Vector2
 
 
 func _ready() -> void:
-	sprite = $Sprite
+	sprite.play("default")
 	position = targets[_targets_index].global_position
 	change_target()
 
@@ -23,14 +24,12 @@ func change_target() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	sprite.play("walk")
 	global_position = global_position.move_toward(_target_position, speed * delta)
 	if _has_reached_target():
 		change_target()
 
-
-func flip_sprite(flip: bool) -> void:
-	sprite.flip_h = flip
+	var direction = _target_position - global_position
+	sprite.flip_h = direction.x < 0
 
 
 func _has_reached_target() -> bool:

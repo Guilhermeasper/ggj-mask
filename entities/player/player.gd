@@ -32,7 +32,7 @@ const INITIAL_MASK_COLOR = MaskColors.NONE
 var _mask_index: int = INITIAL_MASK_COLOR
 var _current_mask: MaskData = ALL_MASKS[INITIAL_MASK_COLOR]
 var _extra_jumps_remaining: int = 0
-var _available_masks: Array[MaskData] = ALL_MASKS
+var _available_masks: Array[MaskData] = [WHITE_MASK]
 var mask_default_position: Vector2
 var mask_offset: int = 12
 
@@ -40,7 +40,7 @@ var mask_offset: int = 12
 func _ready() -> void:
 	set_collision_layers()
 	mask_default_position = mask_node.position
-	background_color.change_color(_current_mask.color)
+	background_color.change_color(_current_mask.mask_name)
 
 	var checkpoint_position = GameManager.get_respawn_position()
 
@@ -113,7 +113,7 @@ func _switch_mask(direction: int) -> void:
 	_current_mask = _available_masks[_mask_index]
 
 	_extra_jumps_remaining = _current_mask.extra_jumps
-	background_color.change_color(_current_mask.color)
+	background_color.change_color(_current_mask.mask_name)
 	mask_node.set_mask_color(_current_mask.mask_name)
 
 	set_collision_layers()

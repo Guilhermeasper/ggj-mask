@@ -2,31 +2,89 @@
 
 [ext_resource type="Shader" uid="uid://riv3m0d4s7aj" path="res://levels/level_1/level_1.gdshader" id="1_bkp1e"]
 [ext_resource type="Script" uid="uid://dh2d0dhhrlb7v" path="res://scenes/background.gd" id="1_y0upk"]
+[ext_resource type="Texture2D" uid="uid://b5sye5sets4kj" path="res://assets/arts/environment/base_bg.png" id="3_wax1t"]
+[ext_resource type="Texture2D" uid="uid://2toqe2tup2k6" path="res://assets/arts/environment/red_bg.png" id="4_1tmhi"]
+[ext_resource type="Texture2D" uid="uid://bx5bhlqb1p5a2" path="res://assets/arts/environment/blue_bg.png" id="5_l5f8m"]
+[ext_resource type="Texture2D" uid="uid://bhs5kyeln0qrj" path="res://assets/arts/environment/yellow_bg.png" id="6_6vm3t"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_7rikf"]
-frequency = 0.5
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ov0dm"]
-noise = SubResource("FastNoiseLite_7rikf")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ov0dm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wax1t"]
 shader = ExtResource("1_bkp1e")
-shader_parameter/noise_img = SubResource("NoiseTexture2D_ov0dm")
-shader_parameter/strength = 0.7090000336775
-shader_parameter/speed = 0.8610000408975
+shader_parameter/strength = 0.5
+shader_parameter/speed = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1tmhi"]
+shader = ExtResource("1_bkp1e")
+shader_parameter/strength = 0.5
+shader_parameter/speed = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l5f8m"]
+shader = ExtResource("1_bkp1e")
+shader_parameter/strength = 0.5
+shader_parameter/speed = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6vm3t"]
+shader = ExtResource("1_bkp1e")
+shader_parameter/strength = 0.5
+shader_parameter/speed = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=699901549]
 layer = -1
+scale = Vector2(0.68, 0.68)
+transform = Transform2D(0.68, 0, 0, 0.68, 0, 0)
 script = ExtResource("1_y0upk")
 
-[node name="BackgroundColor" type="ColorRect" parent="." unique_id=682766793]
-material = SubResource("ShaderMaterial_ov0dm")
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=870248582]
+
+[node name="backgrounds" type="Node" parent="." unique_id=357750225]
+
+[node name="base" type="TextureRect" parent="backgrounds" unique_id=337679299]
+material = SubResource("ShaderMaterial_wax1t")
+anchors_preset = -1
+anchor_right = 1.3100001
+anchor_bottom = 1.3110001
+offset_left = 2.4999695
+offset_top = -3.7500153
+offset_right = 245.69995
+offset_bottom = 132.3299
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_wax1t")
+
+[node name="red" type="TextureRect" parent="backgrounds" unique_id=1619503249]
+material = SubResource("ShaderMaterial_1tmhi")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -14.705902
+offset_top = -16.176483
+offset_right = 625.29407
+offset_bottom = 343.8235
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+texture = ExtResource("4_1tmhi")
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=870248582]
-visible = false
+[node name="blue" type="TextureRect" parent="backgrounds" unique_id=547769423]
+material = SubResource("ShaderMaterial_l5f8m")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0517578e-05
+offset_top = -16.176483
+offset_right = 640.0
+offset_bottom = 343.8235
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_l5f8m")
+
+[node name="yellow" type="TextureRect" parent="backgrounds" unique_id=1539234951]
+material = SubResource("ShaderMaterial_6vm3t")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0517578e-05
+offset_top = -23.529419
+offset_right = 640.0
+offset_bottom = 336.47058
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_6vm3t")
