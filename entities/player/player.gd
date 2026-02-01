@@ -4,7 +4,7 @@ const SPEED := 300.0
 const JUMP_VELOCITY := -500.0
 const CROUCH_SPEED := 150.0
 
-const MASKS: Array[MaskData] = [
+const ALL_MASKS: Array[MaskData] = [
 	preload("res://resources/masks/white_mask.tres"),
 	preload("res://resources/masks/red_mask.tres"),
 	preload("res://resources/masks/yellow_mask.tres"),
@@ -22,14 +22,16 @@ const INITIAL_MASK_COLOR = MaskColors.NONE
 
 @onready var background_color = %BackgroundColor
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var mask_node = $Mask
 
 var _mask_index: int = INITIAL_MASK_COLOR
-var _current_mask: MaskData = MASKS[_mask_index]
+var _current_mask: MaskData = ALL_MASKS[INITIAL_MASK_COLOR]
 var _extra_jumps_remaining: int = 0
+var _available_masks: Array[MaskData] = [ALL_MASKS[INITIAL_MASK_COLOR]]
 
 
 func _ready() -> void:
-	_switch_mask(INITIAL_MASK_COLOR)
+	set_collision_layers()
 	background_color.color = _current_mask.color
 
 	var checkpoint_position = GameManager.get_respawn_position()
@@ -61,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = direction * SPEED
 	if direction != 0:
 		sprite.flip_h = direction < 0
-		$Mask.position.x = -abs($Mask.position.x) if direction < 0 else abs($Mask.position.x)
+		mask_node.position.x = -abs(mask_node.position.x) if direction < 0 else abs(mask_node.position.x)
 
 	if Input.is_action_just_pressed("mask_left"):
 		_switch_mask(-1)
@@ -70,7 +72,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_key_pressed(KEY_Z):
 		var throw_dir = Vector2.RIGHT
-		$Mask.throw(throw_dir)
+		mask_node.throw(throw_dir)
 
 	move_and_slide()
 
@@ -82,19 +84,29 @@ func die() -> void:
 	FadeTransition.fade_out()
 
 
+func collect_mask(mask: MaskData) -> void:
+	_available_masks.append(mask)
+
+
+func set_collision_layers() -> void:
+	for collision_mask_index in range(5, 8):
+		var should_collide = collision_mask_index != _current_mask.target_collision_layer
+		set_collision_mask_value(collision_mask_index, should_collide)
+		mask_node.set_collision_mask_value(collision_mask_index, should_collide)
+
+
 func _switch_mask(direction: int) -> void:
-	_mask_index = wrapi(_mask_index + direction, 0, MASKS.size())
-	_current_mask = MASKS[_mask_index]
+	# update mask
+	_mask_index = wrapi(_mask_index + direction, 0, _available_masks.size())
+	_current_mask = _available_masks[_mask_index]
+
 	_extra_jumps_remaining = _current_mask.extra_jumps
 	background_color.color = _current_mask.color
 
-	var gradient = $Mask/Polygon2D
+	var gradient = mask_node.get_node("Polygon2D")
 	gradient.color = _current_mask.color
 
-	for i in range(MASKS.size()):
-		var should_collide = i != _mask_index || i == 0
-		set_collision_mask_value(i + 4, should_collide)
-		$Mask.set_collision_mask_value(i + 4, should_collide)
+	set_collision_layers()
 
 
 func set_respawn_position(checkpoint_position: Vector2) -> void:

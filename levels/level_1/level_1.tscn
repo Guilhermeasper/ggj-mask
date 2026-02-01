@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dihji23xxltkc" path="res://scenes/checkpoint.tscn" id="8_j48du"]
 [ext_resource type="PackedScene" uid="uid://bq1nmxnom467q" path="res://scenes/finish_point.tscn" id="9_8jbay"]
 [ext_resource type="Script" uid="uid://bhkqxcw4x4ug0" path="res://scenes/finish_point.gd" id="10_la5aw"]
+[ext_resource type="PackedScene" uid="uid://b6kerj6iclmy3" path="res://entities/collectable/collectable_item.tscn" id="10_qbdb0"]
+[ext_resource type="Resource" uid="uid://dsf7hi3jmmc2x" path="res://resources/masks/yellow_mask.tres" id="11_qbdb0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8jbay"]
 texture = ExtResource("3_e6u7d")
@@ -157,13 +159,13 @@ texture = ExtResource("6_8jbay")
 3:3/0/physics_layer_3/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_45440"]
-physics_layer_0/collision_layer = 8
+physics_layer_0/collision_layer = 12
 physics_layer_0/collision_mask = 0
 physics_layer_1/collision_layer = 64
 physics_layer_1/collision_mask = 0
-physics_layer_2/collision_layer = 16
+physics_layer_2/collision_layer = 32
 physics_layer_2/collision_mask = 0
-physics_layer_3/collision_layer = 32
+physics_layer_3/collision_layer = 16
 physics_layer_3/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_8jbay")
 sources/2 = SubResource("TileSetAtlasSource_la5aw")
@@ -207,7 +209,11 @@ position = Vector2(2797, -288)
 script = ExtResource("10_la5aw")
 
 [node name="Player" parent="." unique_id=945925870 instance=ExtResource("2_45440")]
-position = Vector2(2544, -242)
+position = Vector2(123, 602)
 collision_mask = 4
+
+[node name="CollectableItem" parent="." unique_id=9757058 instance=ExtResource("10_qbdb0")]
+position = Vector2(2177, -273)
+mask_data = ExtResource("11_qbdb0")
 
 [connection signal="body_entered" from="FinishPoint" to="FinishPoint" method="_on_body_entered"]
